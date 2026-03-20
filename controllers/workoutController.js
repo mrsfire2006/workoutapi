@@ -1,4 +1,4 @@
-const WorkOut = require("../models/WorkOut");
+const WorkOut = require("../models/workout");
 const { handleError } = require("../validator/handleError");
 
 const worktout_get = async (req, res) => {

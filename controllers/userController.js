@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/user");
 const validator = require("validator");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
@@ -7,7 +7,6 @@ require("dotenv").config();
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.secretKey, {
     expiresIn: "60m",
-    
   });
 };
 
