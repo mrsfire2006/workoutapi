@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://your-netlify-site-name.netlify.app",
+    origin: "https://mrsfire.netlify.app",
     credentials: true,
   }),
 );
