@@ -11,10 +11,15 @@ const app = express();
 // إعدادات الـ Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors()); // يمكنك تحديد رابط الـ Frontend هنا لاحقاً للأمان
+app.use(
+  cors({
+    origin: "https://your-netlify-site-name.netlify.app",
+    credentials: true,
+  }),
+);
 
-
-mongoose.connect(process.env.MONG_URI)
+mongoose
+  .connect(process.env.MONG_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB Error:", err));
 // الاتصال بـ MongoDB
@@ -37,10 +42,10 @@ app.get("/", (req, res) => {
 
 app.use("/api/workouts", workoutRoutes);
 app.use("/api/users", userRoutes);
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 }
 module.exports = app;
