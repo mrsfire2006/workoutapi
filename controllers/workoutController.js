@@ -1,7 +1,7 @@
 const WorkOut = require("../models/workout");
 const { handleError } = require("../validator/handleError");
 
-const worktout_get = async (req, res) => {
+const workout_get = async (req, res) => {
   const user_id = req.user._id;
   try {
     const workouts = await WorkOut.find({ user_id }).sort({
@@ -12,20 +12,20 @@ const worktout_get = async (req, res) => {
     console.log(error);
   }
 };
-const worktoutTitle_get = async (req, res) => {
-  const title = req.params.title;
+// const workoutTitle_get = async (req, res) => {
+//   const title = req.params.title;
 
-  try {
-    const workout = await WorkOut.findOne({ title });
-    if (workout) {
-      return res.status(200).json(workout);
-    }
-    return res.sendStatus(404);
-  } catch (error) {
-    return res.sendStatus(500);
-  }
-};
-const worktout_post = async (req, res) => {
+//   try {
+//     const workout = await WorkOut.findOne({ title });
+//     if (workout) {
+//       return res.status(200).json(workout);
+//     }
+//     return res.sendStatus(404);
+//   } catch (error) {
+//     return res.sendStatus(500);
+//   }
+// };
+const workout_post = async (req, res) => {
   const workout = req.body;
 
   try {
@@ -48,7 +48,7 @@ const worktout_post = async (req, res) => {
     res.status(400).json(errors);
   }
 };
-const worktout_delete = async (req, res) => {
+const workout_delete = async (req, res) => {
   const id = req.params.id;
   try {
     const result = await WorkOut.findByIdAndDelete(id);
@@ -60,7 +60,7 @@ const worktout_delete = async (req, res) => {
     return res.sendStatus(500);
   }
 };
-const worktout_update = async (req, res) => {
+const workout_update = async (req, res) => {
   const id = req.params.id;
 
   const data = req.body;
@@ -80,9 +80,8 @@ const worktout_update = async (req, res) => {
 };
 
 module.exports = {
-  worktout_get,
-  worktoutTitle_get,
-  worktout_post,
-  worktout_delete,
-  worktout_update,
+  workout_get,
+  workout_post,
+  workout_delete,
+  workout_update,
 };

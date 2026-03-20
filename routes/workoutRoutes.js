@@ -6,12 +6,11 @@ const router = express.Router();
 router.use(requireAuth);
 router
   .route("/")
-  .get(workoutcontroller.worktout_get)
-  .post(workoutcontroller.worktout_post);
+  .get(workoutcontroller.workout_get)
+  .post(workoutcontroller.workout_post);
 
-router.route("/:title").get(workoutcontroller.worktoutTitle_get);
 router
   .route("/:id")
-  .delete(workoutcontroller.worktout_delete)
-  .patch(workoutcontroller.worktout_update);
+  .delete(workoutcontroller.workout_delete)
+  .patch(workoutcontroller.workout_update);
 module.exports = router;
