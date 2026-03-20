@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const user = require("../models/user");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
 
@@ -15,7 +15,7 @@ const login_post = async (req, res) => {
     return res.status(400).json({ email: "email not valid", password: "" });
   }
   try {
-    const user = await User.login(u.email, u.password);
+    const user = await user.login(u.email, u.password);
 
     if (user) {
       const token = createToken(user._id);
@@ -32,7 +32,7 @@ const signup_post = async (req, res) => {
     return res.status(400).json({ email: "email not valid", password: "" });
   }
   try {
-    const user = await User.signup(u.email, u.password);
+    const user = await user.signup(u.email, u.password);
     if (user) {
       const token = createToken(user._id);
       // res.cookie("jwt", token, {
