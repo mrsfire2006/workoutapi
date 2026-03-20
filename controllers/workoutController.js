@@ -1,10 +1,10 @@
-const WorkOut = require("../models/workout");
+const workout = require("../models/workout");
 const { handleError } = require("../validator/handleError");
 
 const workout_get = async (req, res) => {
   const user_id = req.user._id;
   try {
-    const workouts = await WorkOut.find({ user_id }).sort({
+    const workouts = await workout.find({ user_id }).sort({
       createdAt: -1,
     });
     res.status(200).json(workouts);
@@ -51,7 +51,7 @@ const workout_post = async (req, res) => {
 const workout_delete = async (req, res) => {
   const id = req.params.id;
   try {
-    const result = await WorkOut.findByIdAndDelete(id);
+    const result = await workout.findByIdAndDelete(id);
     if (result) {
       return res.status(200).json(result);
     }
@@ -66,7 +66,7 @@ const workout_update = async (req, res) => {
   const data = req.body;
   console.log(data);
   try {
-    const result = await WorkOut.findOneAndUpdate(
+    const result = await workout.findOneAndUpdate(
       { _id: id },
       { ...data },
       { returnDocument: "after", runValidators: true },
